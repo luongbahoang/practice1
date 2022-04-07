@@ -1,0 +1,121 @@
+<div class="container">
+
+  <mat-toolbar>
+    <p>Thêm mới nhân sự</p>
+    <span class="fill-remaining-space"></span>
+    <button class="button-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <form [formGroup]="formSubmit" class="normal-form" >
+    <div class="controles-container">
+      <label  >Mã nhân viên</label>
+      <span class="fill-remaining-space"></span>
+
+      <mat-form-field appearance="outline">
+        <input formControlName="code" matInput placeholder="id*" />
+        <mat-error>this field is mandatory.</mat-error>
+      </mat-form-field>
+    </div>
+
+    <div class="controles-container">
+      <label  >Họ và tên</label>
+      <span class="fill-remaining-space"></span>
+      <mat-form-field appearance="outline">
+        <input formControlName="fullName" matInput placeholder="Tên...">
+      </mat-form-field>
+    </div>
+
+    <div class="controles-container">
+      <label >Giới tính</label>
+        <mat-radio-group formControlName="gender" style="margin-left: 40px" >
+        <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
+          {{gender}}
+        </mat-radio-button>
+        </mat-radio-group>
+    </div>
+
+    <div class="controles-container">
+      <label >Tên đăng nhập</label>
+      <span class="fill-remaining-space"></span>
+      <mat-form-field appearance="outline">
+        <input formControlName="userName"  matInput placeholder="Tên...">
+      </mat-form-field>
+    </div>
+    <div class="controles-container">
+      <label >Password</label>
+      <span class="fill-remaining-space"></span>
+      <mat-form-field appearance="outline">
+
+          <input type="password" formControlName="password"  matInput placeholder="Password">
+      </mat-form-field>
+    </div>
+
+    <div class="controles-container" >
+      <label >Chức danh</label>
+      <span class="fill-remaining-space"></span>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="position" placeholder="Chức danh">
+          <mat-option> none </mat-option>
+
+          <ng-container >
+            <mat-option *ngFor="let position of positions" [value]="position">{{position.value}} </mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div class="controles-container">
+      <label  >Hình thức HĐ</label>
+      <span class="fill-remaining-space"></span>
+      <mat-form-field appearance="outline">
+        <mat-select formControlName="type" placeholder="Loại hợp đồng">
+          <mat-option> none </mat-option>
+          <ng-container >
+            <mat-option *ngFor="let type of types" [value]="type.key" (click)="select(type.value)">{{type.value}}</mat-option>
+          </ng-container>
+        </mat-select>
+      </mat-form-field >
+    </div>
+    <div class="controles-container">
+      <label  >Ngày vào làm</label>
+      <span class="fill-remaining-space"></span>
+      <mat-form-field>
+
+        <input
+          formControlName="hireDate"
+          matInput
+          [matDatepicker]="picker"
+          placeholder="HireDate"
+        />
+        <mat-datepicker-toggle matSuffix [for]="picker" color="primary">
+          <mat-datepicker #picker></mat-datepicker>
+        </mat-datepicker-toggle>
+      </mat-form-field>
+      <div class="controles-container">
+        <label  >Comment</label>
+        <span class="fill-remaining-space"></span>
+        <mat-form-field appearance="outline">
+          <textarea matInput formControlName="comment"></textarea>
+        </mat-form-field>
+      </div>
+    </div>
+
+    <div class="button-row">
+      <button
+        mat-raised-button
+        color="primary"
+        type="submit"
+        [disabled]="formSubmit.invalid"
+        (click)=onSubmit()
+      >
+        Submit
+      </button>
+      <button mat-raised-button color="warn" (click)="onClear()">
+        Clear
+      </button>
+
+    </div>
+  </form>
+</div>
+

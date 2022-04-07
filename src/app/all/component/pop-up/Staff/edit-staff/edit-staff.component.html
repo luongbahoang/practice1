@@ -1,0 +1,213 @@
+<div class="container">
+  <mat-toolbar>
+    <h1>
+      Chỉnh sửa nhân viên
+    </h1>
+    <span class="fill-remaining-space"></span>
+    <button class="button-dialog-close" mat-stroked-button (click)="onClose()" tabindex="-1">
+      <mat-icon>clear</mat-icon>
+    </button>
+  </mat-toolbar>
+  <form action="" (ngSubmit)="onSubmit()" [formGroup]="formSubmit">
+  <div class="staffInfo">
+    <mat-tab-group>
+      <mat-tab label="Thông tin nhân viên" >
+           <div class="avatar part1"></div>
+            <div class="part1" >
+            <div>
+              <p>Họ và tên*</p>
+              <mat-form-field appearance="outline">
+                <input formControlName="fullName" matInput/>
+                <mat-icon color="accent" matSuffix>name</mat-icon>
+                <mat-error>this field is mandatory.</mat-error>
+              </mat-form-field>
+            </div>
+            <div>
+              <p>Email cá nhân*</p>
+              <mat-form-field appearance="outline">
+                <input formControlName="personalEmail" matInput/>
+                <mat-icon color="accent" matSuffix>name</mat-icon>
+                <mat-error>this field is mandatory.</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <p>Số điện thoại</p>
+              <mat-form-field appearance="outline">
+                <input formControlName="phoneNumber" matInput/>
+                <mat-icon color="accent" matSuffix>name</mat-icon>
+                <mat-error>this field is mandatory.</mat-error>
+              </mat-form-field>
+            </div>
+
+            <div>
+              <p>Loại hình công việc</p>
+              <mat-form-field appearance="outline">
+                <mat-select formControlName="typeContract" placeholder="Department">
+                  <mat-option> none </mat-option>
+                  <ng-container >
+                    <mat-option *ngFor="let type of types" [value]="type.key">{{type.value}}</mat-option>
+                  </ng-container>
+                </mat-select>
+                <mat-error>this field is mandatory.</mat-error>
+              </mat-form-field>
+            </div>
+
+            </div>
+            <div class="part1">
+
+            <div>
+              <p>Mã nhân viên</p>
+              <mat-form-field appearance="outline">
+                <input formControlName="code" matInput/>
+                <mat-icon color="accent" matSuffix>address</mat-icon>
+                <mat-error>this field is mandatory.</mat-error>
+
+              </mat-form-field>
+            </div>
+            <div style="margin-bottom: 22px">
+              <p>Giới tính</p>
+
+                <mat-radio-group formControlName="gender" style="margin-left: 40px" >
+                  <mat-radio-button class="example-radio-button" *ngFor="let gender of genders" [value]="gender">
+                    {{gender}}
+                  </mat-radio-button>
+                </mat-radio-group>
+            </div>
+              <div style="margin-bottom: 22px">
+                <p>Tình trạng công việc</p>
+
+                <mat-radio-group formControlName="status" style="margin-left: 40px" >
+                  <mat-radio-button class="example-radio-button" *ngFor="let status of statuses" [value]="status.key">
+                    {{status.value}}
+                  </mat-radio-button>
+                </mat-radio-group>
+              </div>
+            <div>
+              <p>CMND/CCCD</p>
+              <mat-form-field appearance="outline">
+                <input formControlName="cmnd" matInput/>
+
+                <mat-icon color="accent" matSuffix>name</mat-icon>
+                <mat-error>this field is mandatory.</mat-error>
+              </mat-form-field>
+            </div>
+            </div>
+      </mat-tab>
+      <mat-tab label="Chính sách lương"></mat-tab>
+      <mat-tab label="Hợp đồng lao động"></mat-tab>
+    </mat-tab-group>
+  </div>
+
+    <p appHighlight>Thông tin cá nhân</p>
+    <mat-divider></mat-divider>
+
+  <div class="personalInfo">
+
+      <div class="part1" >
+                <div>
+                  <p>Nguyên quán</p>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="town" matInput/>
+                    <mat-icon color="accent" matSuffix>name</mat-icon>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <p>Quốc tịch</p>
+
+                  <mat-form-field appearance="outline">
+                    <input formControlName="country" matInput/>
+                    <mat-icon color="accent" matSuffix>name</mat-icon>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+
+
+
+
+                <div>
+                  <p>Tôn giáo</p>
+
+                  <mat-form-field appearance="outline">
+                    <mat-select formControlName="religion">
+                      <mat-option value="1">aa</mat-option>
+                      <mat-option value="2">bb</mat-option>
+                      <mat-option value="3">cc</mat-option>
+                    </mat-select>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+      <div class="part1">
+                <div>
+                  <p>Năm sinh</p>
+                  <mat-form-field>
+
+                    <input
+                      formControlName="year"
+                      matInput
+                      [matDatepicker]="picker"
+                    />
+                    <mat-datepicker-toggle matSuffix [for]="picker" color="primary">
+                      <mat-datepicker #picker></mat-datepicker>
+                    </mat-datepicker-toggle>
+                  </mat-form-field>
+                </div>
+              <div>
+                <p>Nơi sinh</p>
+                <mat-form-field appearance="outline">
+                  <input formControlName="birthplace" matInput/>
+                  <mat-icon color="accent" matSuffix>name</mat-icon>
+                  <mat-error>this field is mandatory.</mat-error>
+                </mat-form-field>
+              </div>
+                <div>
+                  <p>Tình trạng hôn nhân</p>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="marital_status" matInput/>
+                    <mat-icon color="accent" matSuffix>name</mat-icon>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+
+      <div class="part1">
+                <div>
+                  <p>Trình độ văn hóa</p>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="academic_standard" matInput/>
+                    <mat-icon color="accent" matSuffix>year</mat-icon>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <p>Trình độ học vấn</p>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="education_level" matInput/>
+                    <mat-icon color="accent" matSuffix>name</mat-icon>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+                <div>
+                  <p>Dân tộc</p>
+                  <mat-form-field appearance="outline">
+                    <input formControlName="ethnic" matInput/>
+                    <mat-icon color="accent" matSuffix>name</mat-icon>
+                    <mat-error>this field is mandatory.</mat-error>
+                  </mat-form-field>
+                </div>
+
+              </div>
+    </div>
+
+    <div style="text-align: center; margin-top:20px">
+      <button mat-raised-button mat-button color="primary">Save</button>
+    </div>
+  </form>
+</div>
+
+

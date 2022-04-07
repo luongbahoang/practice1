@@ -1,0 +1,11 @@
+.container {
+   height: 100%;
+  max-width: 100%;
+    background-color: #f3f5fb;
+
+  }
+  mat-grid-tile:first-child{
+    border-bottom-left-radius: 30px;
+    border-top-left-radius: 30px;
+    background-color: #0f296d;
+  }

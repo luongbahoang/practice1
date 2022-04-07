@@ -1,0 +1,17 @@
+<div class="container">
+  <mat-toolbar>
+    <ul style="display: flex;list-style-type: none">
+      <li *ngFor="let value of values,let i = index ">
+        <a routerLink="{{value.linkm}}" style="text-decoration: none;color:#0F296D">  {{value.label}}</a>
+        <span *ngIf="i<values.length-1" style="margin: 0 10px 5px">>>  </span>
+
+      </li>
+    </ul>
+
+
+    <span class="fill-remaining-space"></span>
+    <span style="width: 60px;height: 40px;background-color: #f83852">Login</span>
+<mat-icon>notification_important</mat-icon>
+
+  </mat-toolbar>
+</div>

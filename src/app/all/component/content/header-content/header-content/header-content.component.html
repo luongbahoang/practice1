@@ -1,0 +1,16 @@
+<div class="container">
+  <span>Tổng quan</span>
+  <div class="rightside" >
+  <button class="list" (click)="toggle()">
+    <mat-icon *ngIf="hide">list</mat-icon>
+    <mat-icon *ngIf="!hide">ballot</mat-icon>
+  </button>
+  <div class="search">
+    <button mat-button matSuffix mat-icon-button aria-label="Clear" *ngIf="searchKey" (click)="onSearchClear()">
+      <mat-icon>search</mat-icon>
+    </button>
+    <input type="text" [(ngModel)]="searchKey" placeholder="Seach here..." autocomplete="off" (keyup)="applyFilter()">
+  </div>
+  <button class="create"  (click)="createStaff()">Thêm mới<mat-icon>open_in_new</mat-icon></button>
+</div>
+</div>

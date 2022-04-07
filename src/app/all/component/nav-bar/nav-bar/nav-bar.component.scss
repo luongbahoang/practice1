@@ -1,0 +1,25 @@
+.container {
+
+  height: 100%;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.container mat-toolbar {
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  //margin-left: 40px;
+  background-color: #fff;
+
+}
+
+.container mat-toolbar span:first-child {
+  font-size: 14px;
+  margin-left: 28px;
+}
+
+.fill-remaining-space {
+  flex: 1;
+}

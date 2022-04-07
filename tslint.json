@@ -3,6 +3,7 @@
   "rulesDirectory": [
     "codelyzer"
   ],
+
   "rules": {
     "align": {
       "options": [
@@ -83,7 +84,7 @@
       }
     },
     "typedef": [
-      true,
+      false,
       "call-signature"
     ],
     "typedef-whitespace": {

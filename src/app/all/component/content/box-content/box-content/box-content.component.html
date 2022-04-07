@@ -1,0 +1,148 @@
+
+<div [class.active]="!hide"  class="ccc ">
+  <ul>
+    <li *ngFor="let staff of staffs |paginate: { itemsPerPage:page, currentPage: p }">
+        <mat-card  class="example-card" >
+          <div [class.cover]="!staff.status"></div>
+          <mat-card-header>
+            <div mat-card-avatar class="example-header-image"></div>
+            <mat-card-title>{{staff.fullName}}</mat-card-title>
+            <mat-card-subtitle>{{staff.userName}}</mat-card-subtitle>
+
+            <div class="action">
+              <button mat-button (click)="editStaff(staff)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-button (click)="deleteStaff(staff.id)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </div>
+          </mat-card-header>
+
+          <mat-card-content>
+            <mat-grid-list cols="2" rowHeight="50px">
+              <div class="header">
+                <mat-grid-tile>Contact</mat-grid-tile>
+                <mat-grid-tile>Payment Due</mat-grid-tile>
+              </div>
+              <mat-grid-tile>
+                <mat-icon>phone</mat-icon>
+                <span>{{staff.phoneNumber}}</span></mat-grid-tile>
+              <mat-grid-tile>
+                <mat-icon>calendar_today</mat-icon>
+                <span>{{staff.hireDate}}</span></mat-grid-tile>
+              <mat-grid-tile>
+                <mat-icon> email</mat-icon>
+                <span>{{staff.personalEmail}}</span></mat-grid-tile>
+              <mat-grid-tile>
+                <mat-icon> location_on</mat-icon>
+                <span>{{staff.address}}</span></mat-grid-tile>
+            </mat-grid-list>
+          </mat-card-content>
+        </mat-card>
+    </li>`
+  </ul>
+  <div style="display: flex;align-items: center;justify-content: flex-end">
+  <span>items per page:</span>
+    <mat-select class="select" [(ngModel)]="page" >
+      <ng-container *ngFor="let item of itemInPage">
+        <mat-option  [value]="item" >
+          {{item}}
+        </mat-option>
+      </ng-container>
+
+    </mat-select>
+  <div style="margin-left: 20px">
+    <span>{{(p-1)*page+1}} - {{page*p>staffs.length?staffs.length:page*p}} of {{staffs.length}}</span>
+  </div>
+  <pagination-controls   (pageChange)="p=$event"
+                        (pageBoundsCorrection)="p=$event"
+                        maxSize="4"
+                        directionLinks="true"
+                        autoHide="true"
+                        responsive="true"
+                        previousLabel="Previous"
+                        nextLabel="Next"
+                        screenReaderPaginationLabel="Pagination"
+                        screenReaderPageLabel="page"
+                        screenReaderCurrentLabel="You're on page">
+
+  </pagination-controls>
+  </div>
+</div>
+
+
+
+<div [class.active]="hide" class="list">
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource">
+
+      <!-- Position Column -->
+      <ng-container matColumnDef="name">
+        <th mat-header-cell *matHeaderCellDef> Tên nhân viên</th>
+        <td mat-cell *matCellDef="let element"> {{element.fullName}} </td>
+      </ng-container>
+
+      <!-- Name Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef> Mã nhân viên</th>
+        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      </ng-container>
+
+      <!-- Weight Column -->
+      <ng-container matColumnDef="start">
+        <th mat-header-cell *matHeaderCellDef> Ngày bắt đầu</th>
+        <td mat-cell *matCellDef="let element"> {{element.hireDate}} </td>
+      </ng-container>
+
+      <!-- Symbol Column -->
+      <ng-container matColumnDef="phoneNumber">
+        <th mat-header-cell *matHeaderCellDef> Liên lạc</th>
+        <td mat-cell *matCellDef="let element"> {{element.phoneNumber}} </td>
+      </ng-container>
+      <ng-container matColumnDef="address">
+        <th mat-header-cell *matHeaderCellDef> Địa chỉ</th>
+        <td mat-cell *matCellDef="let element"> {{element.address}} </td>
+      </ng-container>
+      <ng-container matColumnDef="status">
+        <th mat-header-cell *matHeaderCellDef> Trạng thái</th>
+        <td mat-cell *matCellDef="let element">
+          <div class="onStatus" [style]="element.status===true?'display:flex':'display:none'" >
+            <mat-icon style="background-color: seagreen;
+                        color: white;
+                        font-size: 20px  ">check_circle
+            </mat-icon>
+            <span>Đang làm</span>
+          </div>
+          <div class="offStatus"  [style]="element.status===true?'display:none':'display:flex'">
+            <mat-icon style="background-color: #cb1b36;
+                        color: white;
+                        font-size: 20px  ">check_circle
+            </mat-icon>
+            <span>Nghỉ làm</span>
+          </div>
+
+        </td>
+      </ng-container>
+      <ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Hành động</th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-button color="primary" (click)="editStaff(element)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-button color="warn" (click)="deleteStaff(element.id)">
+            <mat-icon >delete</mat-icon>
+          </button>
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+
+    <mat-paginator [pageSizeOptions]="[3, 6, 9]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>
